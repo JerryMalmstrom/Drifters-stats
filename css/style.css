@@ -1,7 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 body {
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-  background: linear-gradient(to right, #25c481, #25b7c4);
+  /*background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);*/
+  background: #667f96;
   font-family: 'Roboto', sans-serif;
   color: #FFF;
 }
@@ -75,6 +76,11 @@ p {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+
+td:hover {
+	font-weight: bold;
+}
+	
 
 
 /* for custom scrollbar for webkit browser*/
