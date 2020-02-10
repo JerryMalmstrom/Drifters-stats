@@ -14,53 +14,19 @@
     </head>
     
     <body>
-        <header>
-			<h1>Drifters Stats</h1>
-        </header>
-        <div role="main">
-			
-			<a href="#" onClick="list_laptimes()">List Laptimes</a>
-			
-			<table id="results">
-			</table>
-        </div>
-        <footer>
+		<section>
+			<header>
+				<h1>Drifters Stats</h1>
+				<br/><br/>
+			</header>
+			<div role="main">
+				<a href="laptimes.html">> LAPTIMES</a><p> - Top laptimes for the tracks.</p>
+			</div>
+			<footer>
 
-        </footer>
+			</footer>
+		</section>
 
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-		<script>
-			function list_laptimes() {
-				$.ajax({
-					url: "https://gg.jmns.se/api.php/records/best_times?order=track_id&order=laptime,asc",
-				}).done(function( data ) {
-					var x = 1;
-					var old_track_id = 1;
-					
-					$('#results').html(
-						"<tr><th>Track Number</th><th>Placement</th><th>Name</th><th>Laptime</th><th>Set at</th>"
-					);
-					
-					data.records.forEach(function(time) {
-						if (time.track_id != old_track_id) {
-							x = 1;
-							$('#results').append("<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>");
-						}
-						
-						$('#results').append(
-							"<tr><td>" + time.track_id + "</td><td>" + x + "</td><td>" + time.name + "</td><td>" + time.laptime + "</td><td>" + time.setAt + "</td></tr>"
-						);
-						
-						old_track_id = time.track_id;
-						x += 1;
-						
-					});
-				});	
-				
-			}
-			
-		</script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	</body>
 </html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    
+    <body>
+		<section>
+			<header>
+				<a href="index.html"><h1>Drifters Stats - Laptimes</h1></a>
+				<select id="select_track" onChange="if (this.selectedIndex) list_laptimes(this.selectedIndex);">
+					<option value="-1">Select Track</option>
+				</select>
+				<br/><br/>
+			</header>
+			<div role="main">
+				<div class="tbl-header">
+					<table cellpadding="0" cellspacing="0" border="0">
+						<thead>
+							<tr>
+							<th>Placement</th>
+							<th>Name</th>
+							<th>Laptime</th>
+							<th>Set at</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="tbl-content">
+					<table cellpadding="0" cellspacing="0" border="0">
+						<tbody id="results">
+						
+						</tbody>
+					</table>
+				</div>	
+			</div>
+			<footer>
+
+			</footer>
+		</section>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script>
+			$(function() {
+				$.ajax({
+					url: "https://gg.jmns.se/api.php/records/tracks?order=track_id&order=laptime,asc",
+				}).done(function( data ) {
+					$('#select_track').html("<option value='-1'>Select Track</option>");
+					
+					data.records.forEach(function(track) {
+						$('#select_track').append(
+							"<option value=" + track.id + ">" + track.name + "</option>"
+						);
+					});
+				});
+			});
+			
+			function list_laptimes(selected_track) {
+				$.ajax({
+					url: "https://gg.jmns.se/api.php/records/best_times?filter=track_id,eq," + selected_track + "&order=laptime,asc",
+				}).done(function( data ) {
+					var last_time;
+					$('#results').html("");
+					data.records.forEach(function(time, index) {
+						if (index < 1) {
+							$('#results').append("<tr><td>" + (index+1) + "</td><td>" + time.name + "</td><td>" + time.laptime.toFixed(3) + "</td><td>" + time.setAt + "</td></tr>");
+							last_time = time.laptime.toFixed(3);
+						} else {
+							$('#results').append("<tr><td>" + (index+1) + "</td><td>" + time.name + "</td><td>" + time.laptime.toFixed(3) + " (+" + (time.laptime.toFixed(3) - last_time).toFixed(3) + ")" + "</td><td>" + time.setAt + "</td></tr>");
+						}
+					});
+				});	
+				
+			}
+			
+			
+			
+		</script>
+	</body>
+</html>
