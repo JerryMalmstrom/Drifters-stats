@@ -1,0 +1,13 @@
+#results {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#results th {
+	text-align: left;
+}
+
+#results td {
+	border-bottom: 1px solid #000;
+}
