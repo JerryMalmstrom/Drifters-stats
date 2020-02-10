@@ -11,6 +11,8 @@
 
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+		
     </head>
     
     <body>
@@ -71,8 +73,14 @@
 					var last_time;
 					$('#results').html("");
 					data.records.forEach(function(time, index) {
-						if (index < 1) {
-							$('#results').append("<tr><td>" + (index+1) + "</td><td>" + time.name + "</td><td>" + time.laptime.toFixed(3) + "</td><td>" + time.setAt + "</td></tr>");
+						if (index == 0) {
+							$('#results').append("<tr><td>" + (index+1) + "<i class='fas fa-medal' style='color: #ffde82'></i></td><td>" + time.name + "</td><td>" + time.laptime.toFixed(3) + "</td><td>" + time.setAt + "</td></tr>");
+							last_time = time.laptime.toFixed(3);
+						} else if (index == 1) {
+							$('#results').append("<tr><td>" + (index+1) + "<i class='fas fa-medal' style='color: #d0d0d0'></i></td><td>" + time.name + "</td><td>" + time.laptime.toFixed(3) + " (+" + (time.laptime.toFixed(3) - last_time).toFixed(3) + ")" + "</td><td>" + time.setAt + "</td></tr>");
+							last_time = time.laptime.toFixed(3);
+						} else if (index == 2) {
+							$('#results').append("<tr><td>" + (index+1) + "<i class='fas fa-medal' style='color: #d8b03f'></i></td><td>" + time.name + "</td><td>" + time.laptime.toFixed(3) + " (+" + (time.laptime.toFixed(3) - last_time).toFixed(3) + ")" + "</td><td>" + time.setAt + "</td></tr>");
 							last_time = time.laptime.toFixed(3);
 						} else {
 							$('#results').append("<tr><td>" + (index+1) + "</td><td>" + time.name + "</td><td>" + time.laptime.toFixed(3) + " (+" + (time.laptime.toFixed(3) - last_time).toFixed(3) + ")" + "</td><td>" + time.setAt + "</td></tr>");
