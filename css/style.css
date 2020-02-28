@@ -75,7 +75,8 @@ td{
 
 p {
 	margin-top: 5px;
-	margin-bottom: 5px;
+    margin-bottom: 20px;
+    color: #DDD;
 }
 
 td:hover {
