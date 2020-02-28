@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Drifters Stats - Laptimes</title>
+        <title></title>
         <meta name="description" content="">
 
         <meta name="viewport" content="width=device-width">
@@ -19,7 +19,8 @@
 		<section>
 			<header>
 				<a href="index.html"><h1>Drifters Stats - Laptimes</h1></a>
-				<select id="select_track" onChange="list_laptimes(this.value);">
+				<select id="select_track" onChange="if (this.selectedIndex) list_laptimes(this.selectedIndex);">
+					<option value="-1">Select Track</option>
 				</select>
 				<br/><br/>
 			</header>
@@ -45,7 +46,7 @@
 				</div>	
 			</div>
 			<footer>
-				<span>Base Project: </span><a href="https://github.com/JerryMalmstrom/Drifters">Github</a>
+
 			</footer>
 		</section>
 
@@ -55,15 +56,13 @@
 				$.ajax({
 					url: "https://gg.jmns.se/api.php/records/tracks?order=track_id&order=laptime,asc",
 				}).done(function( data ) {
-					//$('#select_track').html("<option value='-1'>Select Track</option>");
+					$('#select_track').html("<option value='-1'>Select Track</option>");
 					
 					data.records.forEach(function(track) {
 						$('#select_track').append(
 							"<option value=" + track.id + ">" + track.name + "</option>"
 						);
 					});
-					
-					list_laptimes(1);
 				});
 			});
 			

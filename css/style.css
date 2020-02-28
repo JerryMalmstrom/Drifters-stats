@@ -13,6 +13,7 @@ section{
 a {
 	text-decoration: none;
 	font-weight: bold;
+	color: #FFF;
 }
 
 a:visited {
@@ -81,16 +82,7 @@ td:hover {
 	font-weight: bold;
 }
 	
-footer {
-	font-weight: normal;
-	text-align: center;
-    font-size: small;
-	margin-top: 40px;
-}
 
-div[role=main] {
-	min-height: 250px;
-}
 
 /* for custom scrollbar for webkit browser*/
 
