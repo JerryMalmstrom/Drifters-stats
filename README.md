@@ -1,2 +1,2 @@
-# Drifters-stats
- Statistics for my game: Drifters
+# no bullshit drifting
+ Statistics for my game: no bullshit drifting
